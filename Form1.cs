@@ -60,13 +60,6 @@ namespace CarRegistry
             {
                 MessageBox.Show("Error saving data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            /*using (StreamWriter writer = new StreamWriter(path))
-            {
-                foreach (Cars car in carList)
-                {
-                    writer.WriteLine(car.GetCSV());
-                }
-            }*/
         }
         private void LoadDataFromFile()
         {
@@ -112,44 +105,6 @@ namespace CarRegistry
             {
                 MessageBox.Show("Error loading data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            /*carList.Clear();
-            listBox.Items.Clear();
-            try
-            {
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    string line = reader.ReadLine();
-                    while (line != null)
-                    {
-                        try
-                        {
-                            string[] strings = line.Split(",");
-
-                            string Brand = strings[0];
-                            string Model = strings[1];
-                            string Color = strings[2];
-                            int Year = Convert.ToInt32(strings[3]);
-                            int LastInspectionDate = Convert.ToInt32(strings[4]);
-                            string licensePlateNumber = strings[5];
-                            bool electricCar = bool.Parse(strings[6]);
-
-                            Cars cars = new Cars(Brand, Model, Color, Year, LastInspectionDate, licensePlateNumber, electricCar);
-                            carList.Add(cars);
-                            listBox.Items.Add(cars.Brand);
-
-                            line = reader.ReadLine();
-                        }
-                        catch (Exception ex)
-                        {
-                            
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                
-            }*/
         }
 
         private void addCarButton_Click(object sender, EventArgs e)
@@ -163,11 +118,11 @@ namespace CarRegistry
 
         private void SearchCarsButton_Click(object sender, EventArgs e)
         {
-            string searchTerm = licancePlatetextBox.Text.Trim(); // Ta bort eventuella extra mellanslag
+            string searchTerm = licancePlatetextBox.Text.Trim(); 
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                // Sök igenom carList efter en bil med matchande LicensePlateNumber
+                
                 Cars foundCar = carList.FirstOrDefault(car => car.LicensePlateNumber == searchTerm);
 
                 if (foundCar != null)
@@ -319,7 +274,7 @@ namespace CarRegistry
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                // Sök igenom carList efter en bil med matchande LicensePlateNumber
+                
                 Cars foundCar = carList.FirstOrDefault(car => car.LicensePlateNumber == searchTerm);
 
                 if (foundCar != null)
